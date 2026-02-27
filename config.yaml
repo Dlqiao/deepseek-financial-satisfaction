@@ -1,0 +1,152 @@
+# DeepSeek金融垂域满意度提升项目配置文件
+
+# 项目基本信息
+project:
+  name: "deepseek-financial-satisfaction"
+  version: "1.0.0"
+  environment: "production"  # development, staging, production
+
+# API配置
+api:
+  deepseek:
+    api_key: "your-deepseek-api-key-here"
+    api_base: "https://api.deepseek.com"
+    model: "deepseek-chat"
+    timeout: 30
+    max_retries: 3
+  
+  tushare:
+    token: "your-tushare-token-here"
+    api_base: "http://api.tushare.pro"
+
+# 数据库配置
+database:
+  url: "mysql+pymysql://username:password@localhost:3306/deepseek_financial"
+  pool_size: 10
+  max_overflow: 20
+  pool_recycle: 3600
+  echo: false
+
+# 实验配置
+experiment:
+  default_alpha: 0.05  # 显著性水平
+  default_power: 0.8   # 统计功效
+  min_sample_size: 3900  # 最小样本量
+  experiment_groups:
+    - name: "control"
+      description: "对照组：基础DeepSeek模型"
+      traffic: 40
+    - name: "treatment_rag"
+      description: "实验组A：RAG增强"
+      traffic: 20
+    - name: "treatment_prompt"
+      description: "实验组B：结构化Prompt"
+      traffic: 20
+    - name: "treatment_combined"
+      description: "实验组C：RAG+Prompt组合"
+      traffic: 20
+
+# 特征工程配置
+feature_engineering:
+  user_features:
+    - user_type
+    - risk_profile
+    - investment_experience
+    - registration_days
+    - total_queries
+    - avg_rating
+    - feedback_count
+  
+  query_features:
+    - hour
+    - day_of_week
+    - is_weekend
+    - is_trading_hour
+    - query_length
+    - word_count
+    - n_stocks
+    - avg_market_cap
+  
+  response_features:
+    - response_time_ms
+    - response_length
+    - response_paragraphs
+    - financial_mentions
+    - tokens_used
+
+# 模型配置
+model:
+  satisfaction_prediction:
+    algorithm: "xgboost"  # xgboost, lightgbm, random_forest
+    hyperparameters:
+      n_estimators: 100
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+    train_test_split: 0.8
+    cross_validation_folds: 5
+    random_state: 42
+
+# 因果推断配置
+causal_inference:
+  psm:
+    caliper: 0.2
+    ratio: 1  # 1:1匹配
+    replace: false
+  
+  did:
+    time_threshold: "2025-02-15"  # 策略切换时间点
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/project.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+
+# 数据路径配置
+paths:
+  data_raw: "data/raw/"
+  data_processed: "data/processed/"
+  data_interim: "data/interim/"
+  models: "models/"
+  reports: "reports/"
+  figures: "reports/figures/"
+
+# 股票数据配置
+stocks:
+  market_cap_thresholds:
+    large_cap: 1000  # 大盘股 >1000亿
+    mid_cap: 100     # 中盘股 100-1000亿
+    small_cap: 10    # 小盘股 10-100亿
+    micro_cap: 0     # 微盘股 <10亿
+  
+  industries:
+    - "银行"
+    - "保险"
+    - "证券"
+    - "食品饮料"
+    - "医药生物"
+    - "电子"
+    - "计算机"
+    - "房地产"
+    - "汽车"
+    - "机械设备"
+
+# 监控告警配置
+monitoring:
+  enabled: true
+  metrics:
+    - "satisfaction_rate"
+    - "avg_response_time"
+    - "error_rate"
+  alert_thresholds:
+    satisfaction_rate: 0.6  # 低于60%告警
+    avg_response_time: 10000  # 超过10秒告警
+    error_rate: 0.05  # 超过5%告警
+  
+  notification:
+    email: "team@example.com"
+    slack_webhook: "https://hooks.slack.com/services/xxx/yyy/zzz"
