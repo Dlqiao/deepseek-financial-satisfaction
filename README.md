@@ -84,7 +84,11 @@ cp config/config.example.yaml config/config.yaml
 ####  编辑config.yaml，填入DeepSeek API Key和Tushare Token
 ### 数据采集示例
 
-'''python
+```python
+def hello():
+    print("Hello World")
+```
+```python
 from python.data_pipeline import FinancialDataCollector
 
 # 初始化数据采集器
@@ -97,16 +101,16 @@ collector = FinancialDataCollector(
 df_stocks = collector.get_stock_basic()  # 获取股票基础信息
 df_daily = collector.get_daily_data('600519.SH', start_date='2025-01-01')  # 获取日线数据
 df_financial = collector.get_financial_data('600519.SH')  # 获取财务数据
-'''
+```
 ### 运行AB实验分析
 
-'''bash
+```bash
 # 分析实验组vs对照组的满意度差异
 python python/ab_test_analysis.py \
     --experiment_id exp_001 \
     --start_date 2025-02-01 \
     --end_date 2025-02-28
-'''
+```
 ## 📈 实验结果
 
 通过RAG增强和结构化Prompt优化，我们在A/B测试中取得显著效果：
