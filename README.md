@@ -72,35 +72,35 @@
 ## 🚀 快速开始
 
 ### 环境配置
-# 克隆仓库
+####  克隆仓库
 git clone https://github.com/yourname/deepseek-financial-satisfaction.git
 cd deepseek-financial-satisfaction
 
-# 安装依赖
+####  安装依赖
 pip install -r requirements.txt
 
-# 配置API密钥
+####  配置API密钥
 cp config/config.example.yaml config/config.yaml
-# 编辑config.yaml，填入DeepSeek API Key和Tushare Token
+####  编辑config.yaml，填入DeepSeek API Key和Tushare Token
 ### 数据采集示例
 
 python
 from python.data_pipeline import FinancialDataCollector
 
-# 初始化数据采集器
+####  初始化数据采集器
 collector = FinancialDataCollector(
     tushare_token='your_token',
     deepseek_api_key='your_api_key'
 )
 
-# 获取股票数据
+#### 获取股票数据
 df_stocks = collector.get_stock_basic()  # 获取股票基础信息
 df_daily = collector.get_daily_data('600519.SH', start_date='2025-01-01')  # 获取日线数据
 df_financial = collector.get_financial_data('600519.SH')  # 获取财务数据
 ### 运行AB实验分析
 
 bash
-# 分析实验组vs对照组的满意度差异
+#### 分析实验组vs对照组的满意度差异
 python python/ab_test_analysis.py \
     --experiment_id exp_001 \
     --start_date 2025-02-01 \
@@ -119,7 +119,7 @@ python python/ab_test_analysis.py \
 使用PSM（倾向性评分匹配）控制用户特征后，我们验证了模型优化对用户留存的因果效应：
 
 python
-# 匹配前后效果对比
+#### 匹配前后效果对比
 matched_results = {
     'ATT': 0.086,  # 处理组平均处理效应
     'std_error': 0.021,
