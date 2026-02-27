@@ -72,8 +72,6 @@
 ## 🚀 快速开始
 
 ### 环境配置
-
-```bash
 # 克隆仓库
 git clone https://github.com/yourname/deepseek-financial-satisfaction.git
 cd deepseek-financial-satisfaction
@@ -84,7 +82,7 @@ pip install -r requirements.txt
 # 配置API密钥
 cp config/config.example.yaml config/config.yaml
 # 编辑config.yaml，填入DeepSeek API Key和Tushare Token
-数据采集示例
+### 数据采集示例
 
 python
 from python.data_pipeline import FinancialDataCollector
@@ -99,7 +97,7 @@ collector = FinancialDataCollector(
 df_stocks = collector.get_stock_basic()  # 获取股票基础信息
 df_daily = collector.get_daily_data('600519.SH', start_date='2025-01-01')  # 获取日线数据
 df_financial = collector.get_financial_data('600519.SH')  # 获取财务数据
-运行AB实验分析
+### 运行AB实验分析
 
 bash
 # 分析实验组vs对照组的满意度差异
@@ -107,7 +105,7 @@ python python/ab_test_analysis.py \
     --experiment_id exp_001 \
     --start_date 2025-02-01 \
     --end_date 2025-02-28
-📈 实验结果
+## 📈 实验结果
 
 通过RAG增强和结构化Prompt优化，我们在A/B测试中取得显著效果：
 
@@ -116,7 +114,7 @@ python python/ab_test_analysis.py \
 事实错误率	12.4%	5.8%	-53%	<0.001
 平均回答时长	8.3s	9.1s	+0.8s	0.12
 用户复访率	34.1%	42.7%	+8.6pp	<0.01
-🧪 因果推断结果
+## 🧪 因果推断结果
 
 使用PSM（倾向性评分匹配）控制用户特征后，我们验证了模型优化对用户留存的因果效应：
 
@@ -130,7 +128,7 @@ matched_results = {
 }
 结论：模型回答质量的提升，对用户次周留存率有8.6%的显著正向因果效应。
 
-📁 项目文件说明
+## 📁 项目文件说明
 
 文件	说明
 sql/schema.sql	用户行为表、问答日志表、实验分流表等
@@ -141,7 +139,7 @@ python/ab_test_analysis.py	AB实验统计分析与可视化
 python/causal_inference.py	PSM、DID等因果推断模型
 python/satisfaction_model.py	用户满意度预测模型
 notebooks/eda_visualization.py	EDA与可视化分析
-🤝 如何贡献
+## 🤝 如何贡献
 
 欢迎通过Issue和PR参与贡献！特别欢迎以下方向的贡献：
 
@@ -149,7 +147,7 @@ notebooks/eda_visualization.py	EDA与可视化分析
 优化因果推断模型
 改进Prompt模板
 增加更多实验指标
-📚 参考文献
+## 📚 参考文献
 
 DeepSeek + Tushare Fin-Agent 项目 
 基于DeepSeek-R1的智能股票分析系统设计 
