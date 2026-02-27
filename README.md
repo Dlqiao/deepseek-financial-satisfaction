@@ -154,8 +154,13 @@ matched_results = {
 增加更多实验指标
 ## 📚 参考文献
 
-DeepSeek + Tushare Fin-Agent 项目 
-基于DeepSeek-R1的智能股票分析系统设计 
-多智能体股票分析系统 
-Fin-Agent Desktop：基于DeepSeek的开源智能金融助手 
+## 📚 参考文献
+
+[DeepSeek + Tushare Fin-Agent 项目](https://github.com/liqian-finance/Fin-Agent)
+
+[基于DeepSeek-R1的智能股票分析系统设计](https://github.com/wujie4/DeepSeek-R1-Stock-Analysis-System)
+
+[多智能体股票分析系统](https://github.com/kyrie-lei/DeepSeek-Stock-Analysis)
+
+[Fin-Agent Desktop：基于DeepSeek的开源智能金融助手](https://github.com/AXG-Dev/Fin-Agent-Desktop)
 
